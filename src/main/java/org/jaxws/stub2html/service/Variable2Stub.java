@@ -34,7 +34,7 @@ public class Variable2Stub {
 		if (variable.getType().isAnnotationPresent(XmlType.class) && !variable.getType().isEnum()) {
 			convertFieldsToChildStubs(stub, variable.getType(), typeTreeRepository);
 		}
-
+		stub.setCardinality(variable.getCardinality());
 		return stub;
 
 	}

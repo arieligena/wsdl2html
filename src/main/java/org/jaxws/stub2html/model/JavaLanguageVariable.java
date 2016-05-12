@@ -27,6 +27,8 @@ public class JavaLanguageVariable {
 	private boolean required;
 
 	private boolean multiOccurs;
+	
+	private String cardinality;
 
 	public Class<?> getType() {
 		return type;
@@ -64,6 +66,14 @@ public class JavaLanguageVariable {
 
 	public void setMultiOccurs(boolean multiOccurs) {
 		this.multiOccurs = multiOccurs;
+	}
+
+	public String getCardinality() {
+		return cardinality;
+	}
+
+	public void setCardinality(String cardinality) {
+		this.cardinality = cardinality;
 	}
 
 }

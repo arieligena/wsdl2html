@@ -27,8 +27,8 @@ import org.junit.Test;
  * @author chenjianjx@gmail.com
  *
  */
-public class Wsdl2HtmlITCase {
-
+public class FalabellaTCase {
+/*
 	@Test
 	public void fromStubTest_SingleReport() throws IOException {
 		Class<?> webServiceClass = OrderSOAPService.class;
@@ -41,8 +41,8 @@ public class Wsdl2HtmlITCase {
 		WebServiceDisplayEngine displayEngine = createEngine(
 				new SimpleJavaNameDisplayStrategy(),
 
-				/* you can use your own template here. this is a classpath */
-				"/service.ftl");
+				// you can use your own template here. this is a classpath 
+				"/main/resources/service.ftl");
 
 		String html = displayEngine.displayWebService(serviceStubSet);
 		File outputFile = new File(outputDir, "report.html");
@@ -76,45 +76,22 @@ public class Wsdl2HtmlITCase {
 		System.out.println("Please find the HTML files at "
 				+ outputDir.getAbsolutePath());
 	}
-
+*/
+	
 	@Test
 	public void formWsdl() throws Exception {
-		Endpoint.publish("http://localhost:9999/ws/order",
-				new OrderSOAPServiceTestImpl());
-		String wsdlUrl = "http://localhost:9999/ws/order?wsdl";
+	
+		String wsdlUrl = "file:///C:/ws11/FIF_CORP_Cliente_MediosPagoObtener-v1_0_EXP/Resources/WSDL/OSB_Cliente_MediosPago_Obtener.wsdl";
 		System.out.println("Generating from " + wsdlUrl);
 		String html = Wsdl2Html.generateHtml(wsdlUrl);
-		File htmlDir = new File("output" + System.currentTimeMillis());
-		FileUtils.writeStringToFile(new File(htmlDir, "report.html"), html);
-		System.out.println("Please find the HTML files at "
-				+ htmlDir.getAbsolutePath());
+		File htmlDir = new File("output/" + System.currentTimeMillis());
+		FileUtils.writeStringToFile(new File(htmlDir, "OSB_Cliente_MediosPago_Obtener.html"), html);
+		System.out.println("Please find the HTML files at "+htmlDir.getAbsolutePath());
 	}
-
-	@WebService(endpointInterface = "org.jaxws.integrationtest.exampleWebService.OrderSOAPService")
-	private static final class OrderSOAPServiceTestImpl implements
-			OrderSOAPService {
-
-		@Override
-		public void placeOrder(String userName, String password, Order order) {
-
-		}
-
-		@Override
-		public List<Order> findOrders(Integer userId) {
-
-			return null;
-		}
-
-		@Override
-		public void emptyMethod() {
-
-		}
-
-	}
-
+/*
 	public static void main(String[] args) {
-		Endpoint.publish("http://localhost:9999/ws/order",
-				new OrderSOAPServiceTestImpl());
+		Endpoint.publish("http://localhost:7007/ws/order",
+				new OrderSOAPServiceTestImpl());		
 	}
-
+*/
 }
