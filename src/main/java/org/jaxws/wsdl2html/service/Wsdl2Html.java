@@ -26,7 +26,7 @@ public class Wsdl2Html {
 		ByteCodePackage byteCodePackage = Wsdl2ByteCodes.generate(byteCodesDirParent, wsdlUrl);
 		Class<?> webServiceClass = getWebServiceClass(byteCodePackage);
 		WebServiceStubSet serviceStubSet = WebServiceStubSetFactory.createWebServiceStubSet(webServiceClass);
-		return displayEngine.displayWebSerivce(serviceStubSet);
+		return displayEngine.displayWebService(serviceStubSet);
 	}
 	
 	/**

@@ -33,18 +33,26 @@ public class JavaLanguageVariableFactory {
 		XmlElement annotation = field.getAnnotation(XmlElement.class);
 		if (annotation == null) {
 			variable.setVariableName(getElementName(field));
-			variable.setRequired(true);
+			variable.setRequired(false);
 		} else {
 			variable.setVariableName(getVariableName(field, annotation));
 			variable.setRequired(isVariableRequired(annotation));
 		}
 		variable.setType(GenericsUtils.getFieldGenericType(field));
 		variable.setMultiOccurs(isClassArrayOrCollection((Class<?>) field.getType()));
+		variable.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
 		return variable;
+	}
+	
+	private static String processCardinality(boolean isRequired, boolean isMultiOccurs)
+	{
+		return (isRequired? "1..":"0..") + (isMultiOccurs? "n":"1"); 		
 	}
 
 	private static String getElementName(Field field) {
-		return camelToHyphen(field.getName());	 
+		return //camelToHyphen(
+				(field.getName());
+				
 	}
 
 	private static String getVariableName(Field field, XmlElement annotation) {
@@ -90,6 +98,7 @@ public class JavaLanguageVariableFactory {
 		variable.setRequired(true);
 		Class<?> resultClass = method.getReturnType();
 		variable.setMultiOccurs(isClassArrayOrCollection(resultClass));
+		variable.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
 		return variable;
 
 	}
@@ -101,6 +110,7 @@ public class JavaLanguageVariableFactory {
 		variable.setRequired(true);
 		Class<?> paramClass = method.getParameterTypes()[paramIndex];
 		variable.setMultiOccurs(isClassArrayOrCollection(paramClass));
+		variable.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
 		return variable;
 	}
 

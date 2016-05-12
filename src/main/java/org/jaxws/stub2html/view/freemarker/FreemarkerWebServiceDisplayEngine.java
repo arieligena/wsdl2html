@@ -25,7 +25,7 @@ public abstract class FreemarkerWebServiceDisplayEngine extends WebServiceDispla
     }
 
     @Override
-    public String displayWebSerivce(WebServiceStubSet serviceStubSet) {
+    public String displayWebService(WebServiceStubSet serviceStubSet) {
         Template template = getTemplate();
         FreemarkerWebServiceDisplayer displayer = new FreemarkerWebServiceDisplayer(template, nameDisplayingStrategy, serviceStubSet);
         return displayer.displayWebSerivce();

@@ -28,6 +28,8 @@ public class Stub {
 	private boolean required;
 
 	private boolean multiOccurs;
+	
+	private String cardinality;
 
 	/**
 	 * Child elements, such as {orderId, orderDate}
@@ -86,6 +88,14 @@ public class Stub {
 
 	public void setMultiOccurs(boolean multiOccurs) {
 		this.multiOccurs = multiOccurs;
+	}
+
+	public String getCardinality() {
+		return cardinality;
+	}
+
+	public void setCardinality(String cardinality) {
+		this.cardinality = cardinality;
 	}
 
 	@Override

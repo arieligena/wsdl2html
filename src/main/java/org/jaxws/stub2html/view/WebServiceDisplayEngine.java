@@ -13,7 +13,7 @@ public abstract class WebServiceDisplayEngine {
 
     protected JavaNameDisplayStrategy nameDisplayingStrategy;
 
-    public abstract String displayWebSerivce(WebServiceStubSet serviceStubSet);
+    public abstract String displayWebService(WebServiceStubSet serviceStubSet);
 
     public WebServiceDisplayEngine(JavaNameDisplayStrategy nameDisplayingStrategy) {
         super();

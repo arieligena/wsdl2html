@@ -53,12 +53,15 @@ public class SimpleJavaNameDisplayStrategy extends JavaNameDisplayStrategy {
 	 */
 	@Override
 	public String displayElementName(String elementName) {
-		String[] words = StringUtils.split(elementName, "-");
+/*		String[] words = StringUtils.split(elementName, "-");
 		List<String> capitalized = new ArrayList<String>();
 		for (String word : words) {
 			capitalized.add(StringUtils.capitalize(word));
 		}
 		return StringUtils.join(capitalized, " ");
+		
+*/
+		return elementName;
 	}
 
 	@Override

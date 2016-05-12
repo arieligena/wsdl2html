@@ -32,7 +32,7 @@ public class ClasspathFreemarkerWebServiceDisplayEngine extends FreemarkerWebSer
     }
     
     public static FreemarkerWebServiceDisplayEngine createEngine(SimpleJavaNameDisplayStrategy nameDisplayingStrategy) {
-        String ftlPath = "/service.ftl";
+        String ftlPath = "/falabella.ftl";
         return createEngine(nameDisplayingStrategy, ftlPath);
     }
     
