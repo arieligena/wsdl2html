@@ -4,10 +4,6 @@ __You've made a web service or sombody has given you a WSDL. So what are the inp
 
 ![Alt html-table](/doc/image/generated-place-order.png?raw=true)
 
-![Alt html-table](/doc/image/falabella.png?raw=true)
-
-See? You will love it!  Here is a [colorful version](/doc/single-file.html). 
-
 __Sometimes as a developer you haven't got the WSDL ready.__ Instead you've just finished the jax-ws stubs:
 
 ![Alt service](/doc/image/stub-order-soap-service.png?raw=true)
