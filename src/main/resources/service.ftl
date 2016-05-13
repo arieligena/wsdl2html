@@ -74,23 +74,22 @@
 								<tbody>
 										<tr valign="top">
 											<th align="left" class="color">Name</th>
-											<th class="no_color"/>
+											
 											<#if method.inheritanceInvolved>
 												<th align="left" class="color">Scope</th>
-												<th class="no_color"/>
-											</#if>	
+												
+											</#if>
+											<th align="left" class="color">Cardinality</th>
 											<th align="left" class="color">Type</th>
-											<th class="no_color"/>
+										
 											<th align="left" class="color">Required</th>
-											<th class="no_color"/>
+										
 											<th align="left" class="color">Multiple</th>
 										</tr>
 									
 			
 										<#macro stubRow stub indence inheritanceInvolved>
-											<tr class="no_color">
-												<td/>
-											</tr>					
+														
 											<tr valign="top">
 												<td align="left" class="color">
 													<#list 0..indence as i>
@@ -99,14 +98,14 @@
 													${elementName(stub.stubName)}
 												</td>		
 												<#if inheritanceInvolved>		
-													<td class="no_color"/>		
+														
 													<td align="left" class="color">
 														<#if stub.subTypeOfParentStub??>
 															Only for <b>${className(stub.subTypeOfParentStub.name)}</b>											
 														</#if>
 													</td>
 												</#if>
-												<td class="no_color"/>		
+												<td align="left" class="color">${stub.cardinality}</td>	
 												<td align="left" class="color">
 													<#noescape>														
 														<#assign stubTypeName>
@@ -115,9 +114,9 @@
 														${stubTypeName}
 													</#noescape>	
 												</td>
-												<td class="no_color"/>		
+													
 												<td align="left" class="color">${stub.required?string("Y","")}</td>
-												<td class="no_color"/>		
+													
 												<td align="left" class="color">${stub.multiOccurs?string("Y","")} </td>																								
 											</tr>								 
 											<#list stub.childStubs as childStub>									
@@ -142,15 +141,16 @@
 									<tbody>
 											<tr valign="top">
 												<th align="left" class="color">Name</th>
-												<th class="no_color"/>
+												
 												<#if method.inheritanceInvolved>
 													<th align="left" class="color">Scope</th>
 													<th class="no_color"/>
 												</#if>	
+												<th align="left" class="color">Cardinality</th>
 												<th align="left" class="color">Type</th>
-												<th class="no_color"/>
+												
 												<th align="left" class="color">Required</th>
-												<th class="no_color"/>
+												
 												<th align="left" class="color">Multiple</th>
 											</tr>
 											<@stubRow stub=method.responseStub indence=0 inheritanceInvolved=method.inheritanceInvolved/>							
@@ -194,11 +194,7 @@
 							</#if>						
 						 
 					</div>				
-			</#list>				
-			
-			
-			
-			
+			</#list>
 		</body>
 	</html>  
 </#escape>

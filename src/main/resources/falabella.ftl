@@ -144,7 +144,7 @@
 												
 												<#if method.inheritanceInvolved>
 													<th align="left" class="color">Scope</th>
-													th class="no_color"/>
+													<th class="no_color"/>
 												</#if>	
 												<th align="left" class="color">Cardinality</th>
 												<th align="left" class="color">Type</th>
