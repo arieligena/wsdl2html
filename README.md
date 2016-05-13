@@ -82,3 +82,14 @@ To generate html from stub classes, check [Wsdl2HtmlITCase](src/test/java/org/ja
 
 ```
 
+# History
+
+* 2.1  
+	* Added falabella case and template applies to following:
+		* added cardinality column in HTML output		
+	* Fixed required column, It was always Y
+	* Deleted empty cells in HTML output. Implies easier copy/paste to other formats (excel, etc)!	
+	* Minor changes
+
+* 2.0.1
+	* Latest fork from chenjianjx
