@@ -20,6 +20,7 @@ public class Stub {
 	 */
 	private String stubName;
 
+	private String order;
 	/**
 	 * the java type of a element, such as "Order.class"
 	 */
@@ -47,6 +48,14 @@ public class Stub {
 
 	public void setStubName(String stubName) {
 		this.stubName = stubName;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
 	}
 
 	public boolean isRequired() {

@@ -1,7 +1,7 @@
 package org.jaxws.stub2html.service;
 
 import static org.jaxws.stub2html.util.MyClassUtils.isClassArrayOrCollection;
-import static org.jaxws.util.lang.NameConversionUtils.camelToHyphen;
+// import static org.jaxws.util.lang.NameConversionUtils.camelToHyphen;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.jaxws.stub2html.model.JavaLanguageVariable;
 import org.jaxws.stub2html.util.GenericsUtils;
-import org.jaxws.util.lang.NameConversionUtils;
 
 /**
  * 
@@ -31,6 +30,7 @@ public class JavaLanguageVariableFactory {
 		JavaLanguageVariable variable = new JavaLanguageVariable();
 
 		XmlElement annotation = field.getAnnotation(XmlElement.class);
+		
 		if (annotation == null) {
 			variable.setVariableName(getElementName(field));
 			variable.setRequired(false);
@@ -38,15 +38,10 @@ public class JavaLanguageVariableFactory {
 			variable.setVariableName(getVariableName(field, annotation));
 			variable.setRequired(isVariableRequired(annotation));
 		}
+				
 		variable.setType(GenericsUtils.getFieldGenericType(field));
-		variable.setMultiOccurs(isClassArrayOrCollection((Class<?>) field.getType()));
-		variable.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
+		variable.setMultiOccurs(isClassArrayOrCollection((Class<?>) field.getType()));		
 		return variable;
-	}
-	
-	private static String processCardinality(boolean isRequired, boolean isMultiOccurs)
-	{
-		return (isRequired? "1..":"0..") + (isMultiOccurs? "n":"1"); 		
 	}
 
 	private static String getElementName(Field field) {
@@ -97,8 +92,7 @@ public class JavaLanguageVariableFactory {
 		variable.setVariableName(webResultAnnotation.name());
 		variable.setRequired(true);
 		Class<?> resultClass = method.getReturnType();
-		variable.setMultiOccurs(isClassArrayOrCollection(resultClass));
-		variable.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
+		variable.setMultiOccurs(isClassArrayOrCollection(resultClass));		
 		return variable;
 
 	}
@@ -109,8 +103,7 @@ public class JavaLanguageVariableFactory {
 		variable.setVariableName(xmlAnnotation.name());
 		variable.setRequired(true);
 		Class<?> paramClass = method.getParameterTypes()[paramIndex];
-		variable.setMultiOccurs(isClassArrayOrCollection(paramClass));
-		variable.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
+		variable.setMultiOccurs(isClassArrayOrCollection(paramClass));		
 		return variable;
 	}
 
@@ -126,5 +119,4 @@ public class JavaLanguageVariableFactory {
 	static boolean isVariableRequired(XmlElement annotation) {
 		return !annotation.nillable() && annotation.required();
 	}
-
 }

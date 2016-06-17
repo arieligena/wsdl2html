@@ -38,7 +38,7 @@ public class WebMethodStubSet {
 		return requestStubs;
 	}
 
-	public void addRequetStub(Stub stub){
+	public void addRequestStub(Stub stub){
 		requestStubs.add(stub);
 	}
 

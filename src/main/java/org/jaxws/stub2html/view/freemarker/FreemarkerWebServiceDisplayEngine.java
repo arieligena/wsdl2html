@@ -28,7 +28,7 @@ public abstract class FreemarkerWebServiceDisplayEngine extends WebServiceDispla
     public String displayWebService(WebServiceStubSet serviceStubSet) {
         Template template = getTemplate();
         FreemarkerWebServiceDisplayer displayer = new FreemarkerWebServiceDisplayer(template, nameDisplayingStrategy, serviceStubSet);
-        return displayer.displayWebSerivce();
+        return displayer.displayWebService();
     }
 
     protected abstract Template getTemplate();

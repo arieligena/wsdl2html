@@ -1,4 +1,4 @@
-(Now I'm interested in the inverse tool if someone has some code: HTML2WSDL or HTML2XSD!)
+Now I'm working in the inverse tool if someone has some code: HTML2WSDL or HTML2XSD!
 
 # Introduction
 

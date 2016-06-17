@@ -31,7 +31,7 @@ public class FreemarkerWebServiceDisplayer {
 		this.serviceStubSet = serviceStubSet;
 	}
 
-	public String displayWebSerivce() {
+	public String displayWebService() {
 
 		try {
 
@@ -51,7 +51,6 @@ public class FreemarkerWebServiceDisplayer {
 		} catch (TemplateException e) {
 			throw new IllegalStateException(e);
 		}
-
 	}
 
 	private Class<?> toClass(String className) {
@@ -89,12 +88,8 @@ public class FreemarkerWebServiceDisplayer {
 
 			String className = (String) arguments.get(0);
 			Class<?> clazz = toClass(className);
-			return nameDisplayingStrategy.displayElementType(clazz);
-		
+			return nameDisplayingStrategy.displayElementType(clazz);		
 		}
-
- 
-
 	}
 
 	private final class DisplayElementNameMethodModel implements TemplateMethodModel {
@@ -104,7 +99,6 @@ public class FreemarkerWebServiceDisplayer {
 		public Object exec(List arguments) throws TemplateModelException {
 			return nameDisplayingStrategy.displayElementName((String) arguments.get(0));
 		}
-
 	}
 
 	private final class DisplayReadableClassNameMethodModel implements TemplateMethodModel {
@@ -116,11 +110,9 @@ public class FreemarkerWebServiceDisplayer {
 			Class<?> clazz = toClass(className);
 			return nameDisplayingStrategy.displayClassName(clazz);
 		}
-
 	}
 
 	private static final class UnkownType {
 
 	}
-
 }

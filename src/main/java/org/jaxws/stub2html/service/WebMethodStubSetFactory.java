@@ -28,16 +28,18 @@ public class WebMethodStubSetFactory {
 	}
 
 	private static void addResponseStub(Method method, WebMethodStubSet stubSet) {
-		JavaLanguageVariable variable = createVariableFromMethodReturn(method);
+		JavaLanguageVariable variable = createVariableFromMethodReturn(method);		
 		Stub stub = Variable2Stub.convertToStub(variable, stubSet.getStubTypeTreeRepository());
 		stubSet.setResponseStub(stub);
 	}
 
 	private static void addRequestStubs(Method method, WebMethodStubSet stubSet) {
 		List<JavaLanguageVariable> requestVariables = createVariablesFromMethodParamaters(method);
-		for (JavaLanguageVariable variable : requestVariables) {
-			Stub stub = Variable2Stub.convertToStub(variable, stubSet.getStubTypeTreeRepository());
-			stubSet.addRequetStub(stub);
+	//	int i = 1;
+		
+		for (JavaLanguageVariable variable : requestVariables) {		
+			Stub stub = Variable2Stub.convertToStub(variable, stubSet.getStubTypeTreeRepository());	
+			stubSet.addRequestStub(stub);
 		}
 	}
 

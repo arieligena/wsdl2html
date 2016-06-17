@@ -78,7 +78,8 @@
 											<#if method.inheritanceInvolved>
 												<th align="left" class="color">Scope</th>
 												
-											</#if>	
+											</#if>
+											<th align="left" class="color">Order</th>
 											<th align="left" class="color">Cardinality</th>
 											<th align="left" class="color">Type</th>
 										
@@ -104,7 +105,7 @@
 														</#if>
 													</td>
 												</#if>										
-											
+												<td align="left" class="color">${stub.order}</td>
 												<td align="left" class="color">${stub.cardinality}</td>
 												<td align="left" class="color">
 													<#noescape>														
@@ -124,8 +125,7 @@
 											</#list>								
 											
 										</#macro>  		
-										
-										
+																				
 										<#list method.requestStubs as s>								 		
 											<@stubRow stub=s indence=0 inheritanceInvolved=method.inheritanceInvolved/>
 										</#list>
@@ -145,7 +145,8 @@
 												<#if method.inheritanceInvolved>
 													<th align="left" class="color">Scope</th>
 													<th class="no_color"/>
-												</#if>	
+												</#if>
+												<th align="left" class="color">Order</th>
 												<th align="left" class="color">Cardinality</th>
 												<th align="left" class="color">Type</th>
 											

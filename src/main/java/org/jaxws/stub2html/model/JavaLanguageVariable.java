@@ -18,9 +18,9 @@ public class JavaLanguageVariable {
 	 * @XmlType, use the field name
 	 */
 	private String variableName;
-
+	
 	/**
-	 * the java type of a variable, such as "Order.class"
+	 * the java type of a variable, such as "Person.class"
 	 */
 	private Class<?> type;
 
@@ -28,8 +28,6 @@ public class JavaLanguageVariable {
 
 	private boolean multiOccurs;
 	
-	private String cardinality;
-
 	public Class<?> getType() {
 		return type;
 	}
@@ -66,14 +64,6 @@ public class JavaLanguageVariable {
 
 	public void setMultiOccurs(boolean multiOccurs) {
 		this.multiOccurs = multiOccurs;
-	}
-
-	public String getCardinality() {
-		return cardinality;
-	}
-
-	public void setCardinality(String cardinality) {
-		this.cardinality = cardinality;
 	}
 
 }

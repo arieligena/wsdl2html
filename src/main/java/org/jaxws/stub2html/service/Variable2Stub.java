@@ -11,6 +11,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jaxws.stub2html.model.JavaLanguageVariable;
 import org.jaxws.stub2html.model.Stub;
 import org.jaxws.stub2html.model.StubTypeTree;
@@ -23,10 +24,11 @@ import org.jaxws.stub2html.model.StubTypeTree;
  */
 public class Variable2Stub {
 
-	public static Stub convertToStub(JavaLanguageVariable variable,StubTypeTreeRepository typeTreeRepository) {
+	public static Stub convertToStub(JavaLanguageVariable variable, StubTypeTreeRepository typeTreeRepository) {
 
 		Stub stub = new Stub();
 		stub.setStubName(variable.getVariableName());
+		// stub.setOrder(String.valueOf(i));
 		stub.setRequired(variable.isRequired());
 		stub.setMultiOccurs(variable.isMultiOccurs());
 		stub.setType(variable.getType());
@@ -34,9 +36,20 @@ public class Variable2Stub {
 		if (variable.getType().isAnnotationPresent(XmlType.class) && !variable.getType().isEnum()) {
 			convertFieldsToChildStubs(stub, variable.getType(), typeTreeRepository);
 		}
-		stub.setCardinality(variable.getCardinality());
+		
+		stub.setCardinality(processCardinality(variable.isRequired(), variable.isMultiOccurs()));
 		return stub;
+	}	
 
+	private static String processCardinality(boolean isRequired, boolean isMultiOccurs)
+	{
+		return (isRequired? "1..":"0..") + (isMultiOccurs? "n":"1"); 		
+	}
+		
+	//TODO
+	private static String processOrder(boolean isRequired, boolean isMultiOccurs)
+	{
+		return (isRequired? "1..":"0..") + (isMultiOccurs? "n":"1"); 		
 	}
 
 	private static void convertFieldsToChildStubs(Stub parentStub, Class<?> type, StubTypeTreeRepository typeTreeRepository) {
@@ -49,11 +62,13 @@ public class Variable2Stub {
 		for (FieldsOfSubType fieldsOfSubType : fieldsOfSubTypes) {
 			for (Field field : fieldsOfSubType.fields) {
 				Stub childStub = convertToStub(createVariableFromField(field), typeTreeRepository);
+				/*childStub.setOrder(parentStub.getOrder() + "." + 
+						(ArrayUtils.indexOf(type.getDeclaredFields(), field)+
+								1));*/
 				childStub.setSubTypeOfParentStub(fieldsOfSubType.subType);
 				parentStub.addChild(childStub);
 			}
 		}
-
 	}
 
 	private static LinkedList<FieldsOfSubType> getFieldsOfSubTypes(Class<?> thisType, StubTypeTreeRepository typeTreeRepository) {
@@ -110,7 +125,5 @@ public class Variable2Stub {
 			this.fields.addAll(fields);
 
 		}
-
 	}
-
 }
