@@ -72,9 +72,5 @@ public class StubTypeTree {
 		} else if (!type.equals(other.type))
 			return false;
 		return true;
-	}
-	
-	
-	
-	
+	}	
 }

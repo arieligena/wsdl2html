@@ -1,22 +1,16 @@
-Now I'm working in the inverse tool if someone has some code: HTML2WSDL or HTML2XSD!
-
 # Introduction
 
 __You've made a web service or somebody has given you a WSDL. So what are the input and output?__ Check the WSDL? No, that's not readable. Instead you can use __wsdl2html__ to __generate a readable HTML page from a WSDL url, such as__ 
 
 ![Alt html-table](/doc/image/generated-place-order.png?raw=true)
 
-<<<<<<< HEAD
-=======
-
-See? You will love it!  Here is a [colorful version](https://rawgit.com/chenjianjx/wsdl2html/master/doc/single-file.html). 
-
->>>>>>> 2a1b4780d36ec2bbca2a27cd61024388567708e9
 __Sometimes as a developer you haven't got the WSDL ready.__ Instead you've just finished the jax-ws stubs:
 
 ![Alt service](/doc/image/stub-order-soap-service.png?raw=true)
 
 But you still want a HTML spec right away. In this case you can still use __wsdl2html__ to __generate a readable HTML page from jax-ws stubs__
+
+Now I'm working in the inverse tool: [HTML2WSDL](https://github.com/asaidel/html2wsdl)
 
 # How to run
 
@@ -52,9 +46,9 @@ In your pom.xml, add the following:
 
 	<dependencies>
 		<dependency>
-			<groupId>com.github.chenjianjx</groupId>
+			<groupId>com.github.asaidel</groupId>
 			<artifactId>wsdl2html</artifactId>
-			<version>2.0.2</version>
+			<version>2.2</version>
 		</dependency>
 		...
 	</dependencies>	
@@ -89,6 +83,9 @@ To generate html from stub classes, check [Wsdl2HtmlITCase](src/test/java/org/ja
 ```
 
 # History
+
+* 2.2
+	* Merged from chenjianjx 2.0.2
 
 * 2.1  
 	* Added falabella case and template applies to following:

@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.jaxws.stub2html.view.JavaNameDisplayStrategy;
 import org.jaxws.stub2html.view.simple.SimpleJavaNameDisplayStrategy;
-import org.jaxws.util.lang.ClassNameUtils;
-
 import freemarker.template.Template;
 
 /**

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlType;
  * @author chenjianjx
  * 
  */
-@SuppressWarnings("unused")
 @XmlType(name = "order")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Order {

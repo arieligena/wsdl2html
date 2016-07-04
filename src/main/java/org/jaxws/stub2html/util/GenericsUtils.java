@@ -27,7 +27,6 @@ public class GenericsUtils {
 		Class<?> literalType = method.getParameterTypes()[paramIndex];
 		Type genericType = method.getGenericParameterTypes()[paramIndex];
 		return chooseOneType(literalType, genericType);
-
 	}
 
 	static Class<?> chooseOneType(Class<?> literalType, Type genericType) {

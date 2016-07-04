@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlType;
  * @author chenjianjx
  * 
  */
-@SuppressWarnings("unused")
 @XmlType(name = "product")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSeeAlso({FunProduct.class, NotFunProduct.class})
