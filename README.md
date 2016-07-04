@@ -6,6 +6,12 @@ __You've made a web service or somebody has given you a WSDL. So what are the in
 
 ![Alt html-table](/doc/image/generated-place-order.png?raw=true)
 
+<<<<<<< HEAD
+=======
+
+See? You will love it!  Here is a [colorful version](https://rawgit.com/chenjianjx/wsdl2html/master/doc/single-file.html). 
+
+>>>>>>> 2a1b4780d36ec2bbca2a27cd61024388567708e9
 __Sometimes as a developer you haven't got the WSDL ready.__ Instead you've just finished the jax-ws stubs:
 
 ![Alt service](/doc/image/stub-order-soap-service.png?raw=true)
@@ -48,7 +54,7 @@ In your pom.xml, add the following:
 		<dependency>
 			<groupId>com.github.chenjianjx</groupId>
 			<artifactId>wsdl2html</artifactId>
-			<version>2.0</version>
+			<version>2.0.2</version>
 		</dependency>
 		...
 	</dependencies>	
