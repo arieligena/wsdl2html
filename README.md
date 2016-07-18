@@ -2,7 +2,7 @@
 
 __You've made a web service or somebody has given you a WSDL. So what are the input and output?__ Check the WSDL? No, that's not readable. Instead you can use __wsdl2html__ to __generate a readable HTML page from a WSDL url, such as__ 
 
-![Alt html-table](/doc/image/generated-place-order.png?raw=true)
+![Alt html-table](/doc/image/falabella.png?raw=true)
 
 __Sometimes as a developer you haven't got the WSDL ready.__ Instead you've just finished the jax-ws stubs:
 
