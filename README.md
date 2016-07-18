@@ -83,14 +83,17 @@ To generate html from stub classes, check [Wsdl2HtmlITCase](src/test/java/org/ja
 ```
 
 # History
+* 2.3
+	* added order column in HTML output
+	* JDK required 6->7 due error in one case
 
 * 2.2
 	* Merged from chenjianjx 2.0.2
 
 * 2.1  
-	* Added falabella case and template applies to following:
+	* Fixed required column in HTML output, It was always Y
+	* Added falabella test case and template applies to following:
 		* added cardinality column in HTML output		
-	* Fixed required column, It was always Y
 	* Deleted empty cells in HTML output. Implies easier copy/paste to other formats (excel, etc)!	
 	* Minor changes
 

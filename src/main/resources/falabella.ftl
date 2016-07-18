@@ -57,8 +57,7 @@
 							<td align="left" class="color">
 								<#if method.responseStub??>
 									${elementName(method.responseStub.stubName)}
-								</#if>
-								 
+								</#if>								 
 							</td>								
 						</tr>
 					</#list>
@@ -76,38 +75,36 @@
 											<th align="left" class="color">Name</th>
 										
 											<#if method.inheritanceInvolved>
-												<th align="left" class="color">Scope</th>
-												
-											</#if>	
+												<th align="left" class="color">Scope</th>												
+											</#if>
+											<th align="left" class="color">Order</th>
 											<th align="left" class="color">Cardinality</th>
 											<th align="left" class="color">Type</th>
 										
 											<th align="left" class="color">Required</th>
 											
 											<th align="left" class="color">Multiple</th>
-										</tr>
-									
-			
-										<#macro stubRow stub indence inheritanceInvolved>
-										
+										</tr>									
+
+										<#macro stubRow stub order indence inheritanceInvolved>										
 											<tr valign="top">
 												<td align="left" class="color">
-													<#list 0..indence as i>
-													  	&nbsp;&nbsp;&nbsp;&nbsp;
-													</#list>  
+													<#list 0..indence as i>&nbsp;</#list>  
 													${elementName(stub.stubName)}
-												</td>		
+												</td>
 												<#if inheritanceInvolved>		
 													<td align="left" class="color">
 														<#if stub.subTypeOfParentStub??>
 															Only for <b>${className(stub.subTypeOfParentStub.name)}</b>											
 														</#if>
 													</td>
-												</#if>										
-											
+												</#if>
+												<td align="left" class="color">													
+													${order}													
+												</td>
 												<td align="left" class="color">${stub.cardinality}</td>
 												<td align="left" class="color">
-													<#noescape>														
+													<#noescape>
 														<#assign stubTypeName>
 															${elementType(stub.type.name)}
 														</#assign>
@@ -119,18 +116,16 @@
 												
 												<td align="left" class="color">${stub.multiOccurs?string("Y","")} </td>																								
 											</tr>								 
-											<#list stub.childStubs as childStub>									
-												<@stubRow stub=childStub indence=indence+1 inheritanceInvolved=inheritanceInvolved/>
-											</#list>								
+											<#list stub.childStubs as childStub>								
+												<@stubRow stub=childStub order=order+"."+childStub?counter indence=indence+1 inheritanceInvolved=inheritanceInvolved/>
+											</#list>
 											
-										</#macro>  		
-										
-										
+										</#macro>
+
 										<#list method.requestStubs as s>								 		
-											<@stubRow stub=s indence=0 inheritanceInvolved=method.inheritanceInvolved/>
+											<@stubRow stub=s order="2" indence=1 inheritanceInvolved=method.inheritanceInvolved/>
 										</#list>
-										
-			
+													
 								</tbody>
 							</table>
 						</#if>
@@ -145,7 +140,8 @@
 												<#if method.inheritanceInvolved>
 													<th align="left" class="color">Scope</th>
 													<th class="no_color"/>
-												</#if>	
+												</#if>
+												<th align="left" class="color">Order</th>
 												<th align="left" class="color">Cardinality</th>
 												<th align="left" class="color">Type</th>
 											
@@ -153,7 +149,7 @@
 											
 												<th align="left" class="color">Multiple</th>
 											</tr>
-											<@stubRow stub=method.responseStub indence=0 inheritanceInvolved=method.inheritanceInvolved/>							
+											<@stubRow stub=method.responseStub order="1" indence=1 inheritanceInvolved=method.inheritanceInvolved/>							
 									</tbody>
 								</table>					
 							</#if>

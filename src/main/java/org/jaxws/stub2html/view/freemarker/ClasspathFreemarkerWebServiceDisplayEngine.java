@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.jaxws.stub2html.view.JavaNameDisplayStrategy;
 import org.jaxws.stub2html.view.simple.SimpleJavaNameDisplayStrategy;
 import freemarker.template.Template;
+import freemarker.template.TemplateExceptionHandler;
 
 /**
  * 
@@ -21,7 +22,9 @@ public class ClasspathFreemarkerWebServiceDisplayEngine extends FreemarkerWebSer
         if (!absoluteFtlClassPath.startsWith("/")) {
             throw new IllegalArgumentException("Template's class-path has to start with '/'");
         }
+        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
         configuration.setClassForTemplateLoading(ClasspathFreemarkerWebServiceDisplayEngine.class, "/");
+        configuration.setLogTemplateExceptions(true);
         this.absoluteFtlClassPath = absoluteFtlClassPath;
     }
 

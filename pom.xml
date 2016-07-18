@@ -7,7 +7,6 @@
 	<version>2.2</version>
 	<name>convert wsdl xml to readable html doc</name>
 
-
 	<properties>
 		<junit.version>4.9</junit.version>
 		<jdk.version>1.6</jdk.version>
@@ -15,8 +14,6 @@
 	</properties>
 	<build>
 		<plugins>
-
-
 			<plugin>  <!-- Create sources.jar -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -42,7 +39,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -72,7 +68,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 
@@ -83,7 +78,6 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -99,10 +93,13 @@
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
-			<version>2.3.20</version>
-		</dependency>
-
+			<version>2.3.25-incubating</version>
+		</dependency>		
+		<!-- <dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.7</version>
+		</dependency> -->
 	</dependencies>
-
-
+	
 </project>
