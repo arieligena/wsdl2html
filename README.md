@@ -48,7 +48,7 @@ In your pom.xml, add the following:
 		<dependency>
 			<groupId>com.github.asaidel</groupId>
 			<artifactId>wsdl2html</artifactId>
-			<version>2.2</version>
+			<version>2.3</version>
 		</dependency>
 		...
 	</dependencies>	
