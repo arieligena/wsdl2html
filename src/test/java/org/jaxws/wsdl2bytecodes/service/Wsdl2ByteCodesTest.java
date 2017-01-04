@@ -1,7 +1,7 @@
 package org.jaxws.wsdl2bytecodes.service;
 
 import static org.jaxws.wsdl2bytecodes.service.Wsdl2ByteCodes.formatDate;
-import static org.jaxws.wsdl2bytecodes.service.Wsdl2ByteCodes.generatePakcageName;
+import static org.jaxws.wsdl2bytecodes.service.Wsdl2ByteCodes.generatePackageName;
 
 import java.util.Date;
 
@@ -21,7 +21,7 @@ public class Wsdl2ByteCodesTest  {
 	 */
 	@Test
 	public void testGeneratePakcageName() {
-		String packageName = generatePakcageName(formatDate(new Date(), "yyyyMMddHHmmssSSS"));
+		String packageName = generatePackageName(formatDate(new Date(), "yyyyMMddHHmmssSSS"));
 		System.out.println(packageName);
 	}
 }

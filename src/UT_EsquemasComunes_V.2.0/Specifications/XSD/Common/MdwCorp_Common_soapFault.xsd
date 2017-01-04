@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ns1="http://schemas.xmlsoap.org/soap/envelope/" 
+	targetNamespace="http://schemas.xmlsoap.org/soap/envelope/" 
+	elementFormDefault="unqualified" attributeFormDefault="qualified">
+	<xs:element name="Fault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="faultcode" type="xs:string" minOccurs="0"/>
+				<xs:element name="faultstring" type="xs:string" minOccurs="0"/>
+				<xs:element name="faultactor" type="xs:string" minOccurs="0"/>
+				<xs:element name="detail" type="xs:anyType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -10,7 +10,6 @@ import org.jaxws.stub2html.service.WebServiceStubSetFactory;
 import org.jaxws.stub2html.view.WebServiceDisplayEngine;
 import org.jaxws.stub2html.view.freemarker.ClasspathFreemarkerWebServiceDisplayEngine;
 import org.jaxws.stub2html.view.freemarker.FreemarkerWebServiceDisplayEngine;
-import org.jaxws.stub2html.view.simple.SimpleJavaNameDisplayStrategy;
 import org.jaxws.wsdl2bytecodes.model.ByteCodePackage;
 import org.jaxws.wsdl2bytecodes.service.Wsdl2ByteCodes;
 import org.jaxws.wsdl2bytecodes.service.WsdlImportException;
@@ -29,18 +28,16 @@ public class Wsdl2Html {
 		return displayEngine.displayWebService(serviceStubSet);
 	}
 	
-	/**
-	 * if you call this method in your code, make sure the jdk version you used to run your code is no lower than that of the jdk used 
-	 * by your "wsimport" to run in shell. This issue can be tricky. I will develop a portable solution in the future (now is 2016-3-11)
-	 * 
-	 * 
+	/**	
 	 *  
 	 * @param wsdlUrl
+	 * @param template TODO
 	 * @return
 	 * @throws WsdlImportException
 	 */
-	public static String generateHtml(String wsdlUrl) throws WsdlImportException{
-		FreemarkerWebServiceDisplayEngine displayEngine = ClasspathFreemarkerWebServiceDisplayEngine.createEngine(new SimpleJavaNameDisplayStrategy());
+	public static String generateHtml(String wsdlUrl, String template) throws WsdlImportException{
+		FreemarkerWebServiceDisplayEngine displayEngine = 
+				ClasspathFreemarkerWebServiceDisplayEngine.createEngine(template);
 		String byteCodesDirParent = System.getProperty("java.io.tmpdir") + "/wsdl2html";
 		return generateHtml(byteCodesDirParent, wsdlUrl, displayEngine);
 	}

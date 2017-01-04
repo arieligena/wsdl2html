@@ -3,8 +3,7 @@ package org.jaxws.stub2html.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 
@@ -29,7 +28,9 @@ public class Stub {
 	private boolean required;
 
 	private boolean multiOccurs;
-	
+
+	private boolean header;
+
 	private String cardinality;
 
 	/**
@@ -37,11 +38,52 @@ public class Stub {
 	 */
 	private List<Stub> childStubs = new ArrayList<Stub>();
 
+	private Stub parentStub;
 	/**
 	 * if parent stub's type = Product, is it FunProduct or NotFunProduct?
 	 */
 	private Class<?> subTypeOfParentStub;
 
+	public Stub getParentStub() {
+		return parentStub;
+	}
+
+	public Stub getFirstAncestorWithType(Class<?> t) {
+		Stub s = this.getParentStub();
+
+		while (s != null) {
+			if (t.equals(s.getType())) {
+				return s;
+			}
+			s = s.getParentStub();
+		}
+		return null;
+	}
+	
+
+	public List<String> getNamePathFromMeToRootAncestor() {
+		List<String> list = new ArrayList<String>();
+		Stub s = this;
+		while (s != null) {
+			list.add(s.getStubName());
+			s = s.getParentStub();
+		}
+		return list;
+	}
+
+	public boolean isSameTypeWithSomeAncestor() {
+		Stub ancestor = getFirstAncestorWithType(this.type);
+		return ancestor != null;
+	}
+
+	public void setParentStubRelation(Stub parentStub) {
+		if (parentStub == null) {
+			return;
+		}
+		this.parentStub = parentStub;
+		parentStub.childStubs.add(this);
+	}
+	
 	public String getStubName() {
 		return stubName;
 	}
@@ -70,9 +112,17 @@ public class Stub {
 		return childStubs;
 	}
 
-	public void addChild(Stub e) {
-		childStubs.add(e);
+	// public void addChild(Stub e) {
+	// childStubs.add(e);
+	// e.setParentStub(this);
+	// }
 
+	public boolean isHeader() {
+		return header;
+	}
+
+	public void setHeader(boolean header) {
+		this.header = header;
 	}
 
 	public Class<?> getType() {
@@ -99,6 +149,13 @@ public class Stub {
 		this.multiOccurs = multiOccurs;
 	}
 
+	public String getDescription() {
+		if (this.header) {
+			return "In header";
+		}
+		return null;
+	}
+	
 	public String getCardinality() {
 		return cardinality;
 	}
@@ -109,7 +166,8 @@ public class Stub {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append(stubName).append(type).append(required).append(childStubs).toString();
+		String path = StringUtils.join(getNamePathFromMeToRootAncestor(), "<==");
+		return "[Stub: " + type.getSimpleName() + "," + path + "]";
 	}
 
 }

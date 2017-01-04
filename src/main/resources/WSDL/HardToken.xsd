@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.5.--><xs:schema version="1.0" targetNamespace="http://interfaces.appserversoapws.vu/" xmlns:tns="http://interfaces.appserversoapws.vu/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ContextVO" type="tns:contextVO"/>
+  <xs:element name="DefaultResponse" type="tns:defaultResponse"/>
+  <xs:element name="ServiceException" nillable="true" type="tns:serviceExceptionFault"/>
+  <xs:element name="UserVO" type="tns:userVO"/>
+  <xs:element name="totpHardTokenAdd" nillable="true" type="tns:totpHardTokenAddRequest"/>
+  <xs:element name="totpHardTokenAddResponse" type="tns:totpHardTokenAddResponse"/>
+  <xs:element name="totpHardTokenAssign" type="tns:totpHardTokenAssign"/>
+  <xs:element name="totpHardTokenAssignResponse" type="tns:totpHardTokenAssignResponse"/>
+  <xs:element name="totpHardTokenDel" nillable="true" type="tns:totpHardTokenDelRequest"/>
+  <xs:element name="totpHardTokenDelResponse" type="tns:totpHardTokenDelResponse"/>
+  <xs:element name="totpHardTokenLock" nillable="true" type="tns:totpHardTokenLockRequest"/>
+  <xs:element name="totpHardTokenLockResponse" type="tns:totpHardTokenLockResponse"/>
+  <xs:element name="totpHardTokenUnassign" type="tns:totpHardTokenUnassign"/>
+  <xs:element name="totpHardTokenUnassignResponse" type="tns:totpHardTokenUnassignResponse"/>
+  <xs:element name="totpHardTokenUnlock" nillable="true" type="tns:totpHardTokenUnlockRequest"/>
+  <xs:element name="totpHardTokenUnlockResponse" type="tns:totpHardTokenUnlockResponse"/>
+  <xs:element name="totpUsersLogin" nillable="true" type="tns:totpUsersLoginRequest"/>
+  <xs:element name="totpUsersLoginResponse" type="tns:totpUsersLoginResponse"/>
+  <xs:element name="totpUsersUnassign" type="tns:totpUsersUnassign"/>
+  <xs:element name="totpUsersUnassignResponse" type="tns:totpUsersUnassignResponse"/>
+  <xs:complexType name="totpUsersLoginRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="passcode" type="xs:string"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="accountOrigin" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="amount" type="xs:float" nillable="true"/>
+      <xs:element name="destinationAccount" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="destinationBank" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userVO">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="usernameType" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contextVO">
+    <xs:sequence>
+      <xs:element name="channel" type="xs:string"/>
+      <xs:element name="company" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="source" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="transactionType" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpUsersLoginResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="defaultResponse">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:string"/>
+      <xs:element name="errorMessage" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="serviceExceptionFault">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenUnlockRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenUnlockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenDelRequest">
+    <xs:sequence>
+      <xs:element name="serial" type="xs:string"/>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenDelResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenUnassign">
+    <xs:sequence>
+      <xs:element name="serial" type="xs:string" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenUnassignResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpUsersUnassign">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpUsersUnassignResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenLockRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenLockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenAddRequest">
+    <xs:sequence>
+      <xs:element name="serial" type="xs:string"/>
+      <xs:element name="seed" type="xs:string"/>
+      <xs:element name="counter" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenAddResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenAssign">
+    <xs:sequence>
+      <xs:element name="serial" type="xs:string" minOccurs="0"/>
+      <xs:element name="userVO" type="tns:userVO" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="totpHardTokenAssignResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

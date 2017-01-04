@@ -14,20 +14,34 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class JavaLanguageVariable {
 
 	/**
-	 * as "order" in @XmlType(name = "order").  If the name is not specified in
+	 * as "order" in @XmlType(name = "order"). If the name is not specified in
+	 * 
 	 * @XmlType, use the field name
 	 */
 	private String variableName;
-	
+
 	/**
-	 * the java type of a variable, such as "Person.class"
+	 * the java type of a variable, such as "Order.class"
 	 */
 	private Class<?> type;
 
 	private boolean required;
 
 	private boolean multiOccurs;
-	
+
+	/**
+	 * is it transmitted via soap header?
+	 */
+	private boolean header;
+
+	public boolean isHeader() {
+		return header;
+	}
+
+	public void setHeader(boolean header) {
+		this.header = header;
+	}
+
 	public Class<?> getType() {
 		return type;
 	}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://mdwcorp.falabella.com/FIF/CORP/OSB/schema/Cliente/Hardtoken/Asignar/Resp-v2016.09"
+	targetNamespace="http://mdwcorp.falabella.com/FIF/CORP/OSB/schema/Cliente/Hardtoken/Asignar/Resp-v2016.09"
+	elementFormDefault="unqualified">
+	
+	<xs:element name="ClienteHardtokenAsignarMsgResp">
+	    <xs:complexType>	
+		    <xs:sequence>	    			    		
+				<xs:element name="respuesta" type="tns:respuesta_TYPE" />
+			</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    
+     <xs:complexType name="respuesta_TYPE" >    
+	    <xs:sequence>	    			    		
+				<xs:element name="codigoRespuesta" type="xs:string" minOccurs="0" />	    			    		
+				<xs:element name="glosaRespuesta" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -2,10 +2,7 @@ package org.jaxws.stub2html.view.freemarker;
 
 import java.io.IOException;
 
-import org.jaxws.stub2html.view.JavaNameDisplayStrategy;
-import org.jaxws.stub2html.view.simple.SimpleJavaNameDisplayStrategy;
 import freemarker.template.Template;
-import freemarker.template.TemplateExceptionHandler;
 
 /**
  * 
@@ -16,26 +13,24 @@ public class ClasspathFreemarkerWebServiceDisplayEngine extends FreemarkerWebSer
 
     private String absoluteFtlClassPath;
 
-    private ClasspathFreemarkerWebServiceDisplayEngine(JavaNameDisplayStrategy nameDisplayingStrategy, String absoluteFtlClassPath) {
-        super(nameDisplayingStrategy);
+    private ClasspathFreemarkerWebServiceDisplayEngine(String absoluteFtlClassPath) {
+		super();
 
-        if (!absoluteFtlClassPath.startsWith("/")) {
-            throw new IllegalArgumentException("Template's class-path has to start with '/'");
-        }
-        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
-        configuration.setClassForTemplateLoading(ClasspathFreemarkerWebServiceDisplayEngine.class, "/");
-        configuration.setLogTemplateExceptions(true);
-        this.absoluteFtlClassPath = absoluteFtlClassPath;
-    }
-
-    public static FreemarkerWebServiceDisplayEngine createEngine(JavaNameDisplayStrategy nameDisplayingStrategy, String absoluteFtlClassPath) {
-        return new ClasspathFreemarkerWebServiceDisplayEngine(nameDisplayingStrategy, absoluteFtlClassPath);
-    }
+		if (!absoluteFtlClassPath.startsWith("/")) {
+			throw new IllegalArgumentException("Template's class-path has to start with '/'");
+		}
+		configuration.setClassForTemplateLoading(ClasspathFreemarkerWebServiceDisplayEngine.class, "/");
+		this.absoluteFtlClassPath = absoluteFtlClassPath;
+	}
     
-    public static FreemarkerWebServiceDisplayEngine createEngine(SimpleJavaNameDisplayStrategy nameDisplayingStrategy) {
-        String ftlPath = "/falabella.ftl";
-        return createEngine(nameDisplayingStrategy, ftlPath);
-    }
+    public static FreemarkerWebServiceDisplayEngine createEngine(String absoluteFtlClassPath) {
+		return new ClasspathFreemarkerWebServiceDisplayEngine(absoluteFtlClassPath);
+	}
+ 
+	public static FreemarkerWebServiceDisplayEngine createEngine() {
+		String ftlPath = "/service.ftl";
+		return createEngine(ftlPath);
+	}
     
     protected Template getTemplate() {
         try {
@@ -44,7 +39,4 @@ public class ClasspathFreemarkerWebServiceDisplayEngine extends FreemarkerWebSer
             throw new IllegalStateException(e);
         }
     }
-
- 
-
 }

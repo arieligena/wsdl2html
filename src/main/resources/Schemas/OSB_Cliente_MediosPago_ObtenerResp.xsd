@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+    targetNamespace="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Resp-v2016.03"
+    xmlns:tns="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Resp-v2016.03">
+
+    <xs:element name="clienteMediosPagoObtenerExpResp" type="tns:clienteMediosPagoObtenerExpResp_TYPE"/>
+    <xs:complexType name="clienteMediosPagoObtenerExpResp_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="estadoConsulta" type="tns:estadoConsulta_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="productos" type="tns:productos_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="estadoConsulta_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="codigoRespuesta" type="xs:int"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="descripcionRespuesta" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="productos_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="listaTarjetasCredito" type="tns:listaTarjetasCredito_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="listaCuentasBancarias" type="tns:listaCuentasBancarias_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="listaPuntosLealtad" type="tns:listaPuntosLealtad_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="listaTarjetasCredito_TYPE">
+        <xs:sequence>
+	           <xs:element maxOccurs="unbounded" minOccurs="0" name="tarjetaCredito" type="tns:tarjetaCredito_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+       <xs:complexType name="listaPuntosLealtad_TYPE">
+        <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="puntosLealtad" type="tns:puntosLealtad_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="puntosLealtad_TYPE">
+        <xs:sequence>
+               <xs:element maxOccurs="1" minOccurs="1" name="cantidadPuntos" type="xs:decimal"/>
+               <xs:element maxOccurs="1" minOccurs="1" name="tipoPuntos" type="xs:string"/>
+               <xs:element maxOccurs="1" minOccurs="0" name="puntosPorVencer" type="xs:decimal"/>
+               <xs:element maxOccurs="1" minOccurs="0" name="fechaVencimiento" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tarjetaCredito_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="codigoProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="codigoSubProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="descripcionProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="numeroProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tipoMoneda" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="estado" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="contrato" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="listaPlasticos" type="tns:listadoPlasticos_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cuentaTarjetaCredito" type="tns:cuentaTarjetaCredito_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+       
+    <xs:complexType name="cuentaTarjetaCredito_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="comportamiento" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cupoDisponibleCompras" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cupoDisponibleComprasInternacional" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cupoDisponibleNacional" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cupoDisponibleInternacional" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cupoUtilizadoNacional" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cupoUtilizadoInternacional" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="identificadorCuentaTarjeta" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="situacion" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tasa" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tasaInteresPunitorio" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tasaTEM" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tasaTNA" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="listaCuentasBancarias_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="cuentaBancaria" type="tns:cuentaBancaria_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="cuentaBancaria_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="codigoProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="codigoSubProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="descripcionProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="numeroProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="estado" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tipoMoneda" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="codigoCCI" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="numeroCuenta" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="saldoContable" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="saldoDisponible" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="saldoLineaCredito" type="xs:decimal"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="titularidad" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="listaTarjetaDebito" type="tns:listaTarjetaDebito_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="listaTarjetaDebito_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="tarjetaDebito" type="tns:tarjetaDebito_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="tarjetaDebito_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="listadoPlasticos" type="tns:listadoPlasticos_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="listadoPlasticos_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="plastico" type="tns:plastico_TYPE"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="plastico_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="fechaVencimientoPlastico" type="xs:date"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="codigoSeguridad" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="identificador" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="categoria" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="logoMarca" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="estado" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

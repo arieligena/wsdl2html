@@ -16,9 +16,13 @@ public class WsdlImportException extends Exception {
         super();
         this.readableReason = readableReason;
     }
-
-    public String getReadableReason() {
-        return readableReason;
-    }
-
+  
+	public String getReadableReason() {
+		return readableReason;
+	}
+	
+	@Override
+	public String getMessage() { 
+		return "\n" + readableReason;
+	}
 }

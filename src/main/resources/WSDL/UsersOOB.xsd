@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.5.--><xs:schema version="1.0" targetNamespace="http://interfaces.appserversoapws.vu/" xmlns:tns="http://interfaces.appserversoapws.vu/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ContextVO" type="tns:contextVO"/>
+  <xs:element name="DefaultResponse" type="tns:defaultResponse"/>
+  <xs:element name="DeviceVO" type="tns:deviceVO"/>
+  <xs:element name="loginSaltIDResponse_type" type="tns:loginSaltIDResponse_type"/>
+  <xs:element name="ServiceException" nillable="true" type="tns:serviceExceptionFault"/>
+  <xs:element name="UserStatusResponse" type="tns:userStatusResponse"/>
+  <xs:element name="UserVO" type="tns:userVO"/>
+  <xs:element name="loginChangePassword" nillable="true" type="tns:loginChangePasswordRequest"/>
+  <xs:element name="loginChangePasswordHash" nillable="true" type="tns:loginChangePasswordHashRequest"/>
+  <xs:element name="loginChangePasswordHashResponse" type="tns:loginChangePasswordHashResponse"/>
+  <xs:element name="loginChangePasswordResponse" type="tns:loginChangePasswordResponse"/>
+  <xs:element name="loginDelete" nillable="true" type="tns:loginDeleteRequest"/>
+  <xs:element name="loginDeleteResponse" type="tns:loginDeleteResponse"/>
+  <xs:element name="loginLock" nillable="true" type="tns:loginLockRequest"/>
+  <xs:element name="loginLockResponse" type="tns:loginLockResponse"/>
+  <xs:element name="loginLogin" nillable="true" type="tns:loginLoginRequest"/>
+  <xs:element name="loginLoginHash" nillable="true" type="tns:loginLoginHashRequest"/>
+  <xs:element name="loginLoginHashResponse" type="tns:loginLoginHashResponse"/>
+  <xs:element name="loginLoginResponse" type="tns:loginLoginResponse"/>
+  <xs:element name="loginRegistration" nillable="true" type="tns:loginRegistrationRequest"/>
+  <xs:element name="loginRegistrationHash" nillable="true" type="tns:loginRegistrationHashRequest"/>
+  <xs:element name="loginRegistrationHashResponse" type="tns:loginRegistrationHashResponse"/>
+  <xs:element name="loginRegistrationResponse" type="tns:loginRegistrationResponse"/>
+  <xs:element name="loginSaltID" nillable="true" type="tns:loginSaltIDRequest"/>
+  <xs:element name="loginSaltIDResponse" type="tns:loginSaltIDResponse"/>
+  <xs:element name="loginStatus" nillable="true" type="tns:loginStatusRequest"/>
+  <xs:element name="loginStatusRequest" type="tns:loginStatusRequest"/>
+  <xs:element name="loginStatusResponse" type="tns:loginStatusResponse"/>
+  <xs:element name="loginUnlock" nillable="true" type="tns:loginUnlockRequest"/>
+  <xs:element name="loginUnlockRequest" type="tns:loginUnlockRequest"/>
+  <xs:element name="loginUnlockResponse" type="tns:loginUnlockResponse"/>
+  <xs:element name="smsDelete" nillable="true" type="tns:smsDeleteRequest"/>
+  <xs:element name="smsDeleteResponse" type="tns:smsDeleteResponse"/>
+  <xs:element name="smsLock" nillable="true" type="tns:smsLockRequest"/>
+  <xs:element name="smsLockResponse" type="tns:smsLockResponse"/>
+  <xs:element name="smsLogin" nillable="true" type="tns:smsLoginRequest"/>
+  <xs:element name="smsLoginResponse" type="tns:smsLoginResponse"/>
+  <xs:element name="smsRegistration" nillable="true" type="tns:smsRegistrationRequest"/>
+  <xs:element name="smsRegistrationResponse" type="tns:smsRegistrationResponse"/>
+  <xs:element name="smsSend" nillable="true" type="tns:smsSendRequest"/>
+  <xs:element name="smsSendDownloadURL" nillable="true" type="tns:smsSendDownloadURLRequest"/>
+  <xs:element name="smsSendDownloadURLResponse" type="tns:smsSendDownloadURLResponse"/>
+  <xs:element name="smsSendResponse" type="tns:smsSendResponse"/>
+  <xs:element name="smsUnlock" nillable="true" type="tns:smsUnlockRequest"/>
+  <xs:element name="smsUnlockResponse" type="tns:smsUnlockResponse"/>
+  <xs:element name="usersStatus" nillable="true" type="tns:usersStatusRequest"/>
+  <xs:element name="usersStatusResponse" type="tns:usersStatusResponse"/>
+  <xs:complexType name="loginUnlockRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userVO">
+    <xs:sequence>
+      <xs:element name="username" type="xs:string"/>
+      <xs:element name="usernameType" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contextVO">
+    <xs:sequence>
+      <xs:element name="channel" type="xs:string"/>
+      <xs:element name="company" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="source" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="transactionType" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginUnlockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="defaultResponse">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:string"/>
+      <xs:element name="errorMessage" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="serviceExceptionFault">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginLoginHashRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="hash" type="xs:string"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginLoginHashResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginRegistrationHashRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="RSA" type="xs:string"/>
+      <xs:element name="hash" type="xs:string"/>
+      <xs:element name="hashExpiration" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="birthDate" type="xs:dateTime" nillable="true" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginRegistrationHashResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginRegistrationRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="passwordExpiration" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="birthDate" type="xs:dateTime" nillable="true" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginRegistrationResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsUnlockRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsUnlockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsLoginRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="passcode" type="xs:string"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="accountOrigin" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="amount" type="xs:float" nillable="true"/>
+      <xs:element name="destinationAccount" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="destinationBank" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsLoginResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsRegistrationRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="mobile" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="mobileCarrier" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="deploymentMechanism" type="xs:string"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsRegistrationResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginSaltIDRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginSaltIDResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:loginSaltIDResponse_type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginSaltIDResponse_type">
+    <xs:sequence>
+      <xs:element name="errorCode" type="xs:string"/>
+      <xs:element name="errorMessage" type="xs:string"/>
+      <xs:element name="salt" type="xs:string" minOccurs="0"/>
+      <xs:element name="randomID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsDeleteRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsDeleteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginChangePasswordRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="passwordExpiration" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="birthDate" type="xs:dateTime" nillable="true" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginChangePasswordResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsSendRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="otpType" type="xs:string"/>
+      <xs:element name="otpInfo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsSendResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginStatusRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginStatusResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usersStatusRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usersStatusResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:userStatusResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userStatusResponse">
+    <xs:complexContent>
+      <xs:extension base="tns:defaultResponse">
+        <xs:sequence>
+          <xs:element name="deviceVO" type="tns:deviceVO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="deviceVO">
+    <xs:sequence>
+      <xs:element name="attemptsRemaining" type="xs:int" nillable="true"/>
+      <xs:element name="serialNumber" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="state" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="priority" type="xs:int" nillable="true"/>
+      <xs:element name="type" type="xs:string" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginLockRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginLockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginChangePasswordHashRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="RSA" type="xs:string"/>
+      <xs:element name="hash" type="xs:string"/>
+      <xs:element name="hashExpiration" type="xs:string" nillable="true" minOccurs="0"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="birthDate" type="xs:dateTime" nillable="true" minOccurs="0"/>
+      <xs:element name="phoneNumber" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginChangePasswordHashResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginLoginRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="password" type="xs:string"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginLoginResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsSendDownloadURLRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+      <xs:element name="otpType" type="xs:string"/>
+      <xs:element name="otpInfo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsSendDownloadURLResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginDeleteRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginDeleteResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsLockRequest">
+    <xs:sequence>
+      <xs:element name="userVO" type="tns:userVO"/>
+      <xs:element name="contextVO" type="tns:contextVO" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="smsLockResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:defaultResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

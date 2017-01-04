@@ -10,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.jaxws.stub2html.view.freemarker.ClasspathFreemarkerWebServiceDisplayEngine;
 import org.jaxws.stub2html.view.freemarker.FreemarkerWebServiceDisplayEngine;
-import org.jaxws.stub2html.view.simple.SimpleJavaNameDisplayStrategy;
 import org.jaxws.wsdl2bytecodes.service.WsdlImportException;
 import org.jaxws.wsdl2html.service.Wsdl2Html;
 
@@ -55,7 +54,7 @@ public class Wsdl2HtmlMain {
 	}
 
 	private static FreemarkerWebServiceDisplayEngine createDisplayEngine(List<String> argList) {
-		FreemarkerWebServiceDisplayEngine displayEngine =  ClasspathFreemarkerWebServiceDisplayEngine.createEngine(new SimpleJavaNameDisplayStrategy());		 
+		FreemarkerWebServiceDisplayEngine displayEngine =  ClasspathFreemarkerWebServiceDisplayEngine.createEngine();		 
 		return displayEngine;
 	}
 

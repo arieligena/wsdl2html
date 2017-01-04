@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Req-v2016.03" xmlns:tns="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Req-v2016.03">
+    <xs:element name="clienteMediosPagoObtenerExpReq" type="tns:clienteMediosPagoObtenerExpReq_TYPE"/>
+    
+    <xs:complexType name="clienteMediosPagoObtenerExpReq_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="documentoIdentidad" type="tns:documentoIdentidad_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tarjetaCredito" type="tns:tarjetaCredito_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tarjetaDebito" type="tns:tarjetaDebito_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="cuentaDebito" type="tns:cuentaDebito_TYPE"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="tipoConsulta" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="documentoIdentidad_TYPE">
+        <xs:sequence>
+            <xs:element name="tipoDocumento" type="tns:tipoDocumento_TYPE" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="numeroDocumento" type="xs:string" maxOccurs="1" minOccurs="1"/>
+            <xs:element name="paisDocumento" type="tns:country_TYPE" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="tipoDocumento_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RUT"/>
+			<xs:enumeration value="NIT"/>
+			<xs:enumeration value="CEDULA_DE_CIUDADANIA"/>
+			<xs:enumeration value="CEDULA_DE_EXTRANJERIA"/>
+			<xs:enumeration value="TARJETA_DE_IDENTIDAD"/>
+			<xs:enumeration value="PASAPORTE"/>
+			<xs:enumeration value="CARNET_DIPLOMATICO"/>
+			<xs:enumeration value="DNI"/>
+			<xs:enumeration value="CARNET_DE_EXTRANJERIA"/>
+			<xs:enumeration value="CARNET_FFPP"/>
+			<xs:enumeration value="CARNET_FFAA"/>
+			<xs:enumeration value="LIBRETA_CIVICA"/>
+			<xs:enumeration value="LIBRETA_ENROLAMIENTO"/>
+			<xs:enumeration value="PRESTAMOS_SODIMAC_MUTUAL"/>
+		</xs:restriction>
+	</xs:simpleType> 
+	
+	<xs:complexType name="tarjetaCredito_TYPE">
+        <xs:sequence>
+            <xs:element name="identificador" type="xs:string" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tarjetaDebito_TYPE">
+        <xs:sequence>
+            <xs:element name="identificador" type="xs:string" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cuentaDebito_TYPE">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="codigoProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="codigoSubProducto" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="numeroProducto" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+  <xs:simpleType name="country_TYPE">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AR"/>
+			<xs:enumeration value="BR"/>
+			<xs:enumeration value="CL"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="PE"/>
+			<xs:enumeration value="UY"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

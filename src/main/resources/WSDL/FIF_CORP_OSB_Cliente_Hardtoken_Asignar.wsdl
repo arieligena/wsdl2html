@@ -1,0 +1,63 @@
+<wsdl:definitions name="FIF_CORP_OSB_Cliente_Hardtoken_Asignar.wsdl"
+	targetNamespace="http://mdwcorp.falabella.com/FIF/CORP/OSB/wsdl/Cliente/Hardtoken/Asignar-v1.0"
+	xmlns:tns="http://mdwcorp.falabella.com/FIF/CORP/OSB/wsdl/Cliente/Hardtoken/Asignar-v1.0"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cs="http://mdwcorp.falabella.com/common/schema/clientservice"
+	xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:req="http://mdwcorp.falabella.com/FIF/CORP/OSB/schema/Cliente/Hardtoken/Asignar/Req-v2016.09"
+	xmlns:resp="http://mdwcorp.falabella.com/FIF/CORP/OSB/schema/Cliente/Hardtoken/Asignar/Resp-v2016.09">
+
+    <wsdl:types>
+		<xs:schema>
+			<xs:import schemaLocation="../../../UT_EsquemasComunes_V.2.0/Specifications/XSD/Common/MdwCorp_Common_clientService.xsd" namespace="http://mdwcorp.falabella.com/common/schema/clientservice"/>
+			<xs:import schemaLocation="../../../UT_EsquemasComunes_V.2.0/Specifications/XSD/Common/MdwCorp_Common_soapFault.xsd" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+			<xs:import schemaLocation="../Schemas/FIF_CORP_OSB_Cliente_Hardtoken_AsignarReq.xsd" namespace="http://mdwcorp.falabella.com/FIF/CORP/OSB/schema/Cliente/Hardtoken/Asignar/Req-v2016.09"/>
+			<xs:import schemaLocation="../Schemas/FIF_CORP_OSB_Cliente_Hardtoken_AsignarResp.xsd" namespace="http://mdwcorp.falabella.com/FIF/CORP/OSB/schema/Cliente/Hardtoken/Asignar/Resp-v2016.09"/>
+		</xs:schema>
+	</wsdl:types>
+
+    <wsdl:message name="ClienteHardtokenAsignarMsgReq">
+		<wsdl:part name="ClienteHardtokenAsignarReqParam" element="req:ClienteHardtokenAsignarMsgReq"/>
+	</wsdl:message>
+	<wsdl:message name="ClienteHardtokenAsignarMsgResp">
+		<wsdl:part name="ClienteHardtokenAsignarRespParam" element="resp:ClienteHardtokenAsignarMsgResp"/>
+	</wsdl:message>
+    
+    <wsdl:message name="FaultMsg">
+		<wsdl:part name="FaultParam" element="env:Fault"/>
+	</wsdl:message>
+	<wsdl:message name="ClientServiceMsg">
+		<wsdl:part name="ClientServiceParam" element="cs:ClientService"/>
+	</wsdl:message>
+    
+    <wsdl:portType name="ClienteHardtokenAsignarPt">
+		<wsdl:operation name="ClienteHardtokenAsignarOp">
+			<wsdl:input message="tns:ClienteHardtokenAsignarMsgReq"/>
+			<wsdl:output message="tns:ClienteHardtokenAsignarMsgResp"/>
+			<wsdl:fault name="Fault" message="tns:FaultMsg"/>
+		</wsdl:operation>
+	</wsdl:portType>
+    
+    <wsdl:binding name="ClienteHardtokenAsignarBinding" type="tns:ClienteHardtokenAsignarPt">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="ClienteHardtokenAsignarOp">
+			<soap:operation soapAction="http://mdwcorp.falabella.com/FIF/CORP/OSB/wsdl/Cliente/Hardtoken/Asignar-v1.0/Op"/>
+			<wsdl:input>
+				<soap:header message="tns:ClientServiceMsg" part="ClientServiceParam" use="literal"/>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="Fault">
+				<soap:fault name="Fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+    
+    <wsdl:service name="ClienteHardtokenAsignarService">
+		<wsdl:port name="ClienteHardtokenAsignarPort" binding="tns:ClienteHardtokenAsignarBinding">
+			<soap:address location="http://localhost"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

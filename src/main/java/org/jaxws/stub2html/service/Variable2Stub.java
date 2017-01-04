@@ -11,7 +11,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.jaxws.stub2html.model.JavaLanguageVariable;
 import org.jaxws.stub2html.model.Stub;
 import org.jaxws.stub2html.model.StubTypeTree;
@@ -24,16 +23,17 @@ import org.jaxws.stub2html.model.StubTypeTree;
  */
 public class Variable2Stub {
 
-	public static Stub convertToStub(JavaLanguageVariable variable, StubTypeTreeRepository typeTreeRepository) {
+	public static Stub convertToStub(JavaLanguageVariable variable, Stub parentStub,StubTypeTreeRepository typeTreeRepository) {
 
 		Stub stub = new Stub();
+		stub.setParentStubRelation(parentStub);
 		stub.setStubName(variable.getVariableName());
-		// stub.setOrder(String.valueOf(i));
 		stub.setRequired(variable.isRequired());
+		stub.setHeader(variable.isHeader());
 		stub.setMultiOccurs(variable.isMultiOccurs());
 		stub.setType(variable.getType());
 
-		if (variable.getType().isAnnotationPresent(XmlType.class) && !variable.getType().isEnum()) {
+		if (variable.getType().isAnnotationPresent(XmlType.class) && !variable.getType().isEnum() && !stub.isSameTypeWithSomeAncestor()) {
 			convertFieldsToChildStubs(stub, variable.getType(), typeTreeRepository);
 		}
 		
@@ -45,30 +45,48 @@ public class Variable2Stub {
 	{
 		return (isRequired? "1..":"0..") + (isMultiOccurs? "n":"1"); 		
 	}
+	
+	private static void convertFieldsToChildStubs(Stub parentStub, Class<?> stub, StubTypeTreeRepository typeTreeRepository) {
 		
-	//TODO
-	private static String processOrder(boolean isRequired, boolean isMultiOccurs)
-	{
-		return (isRequired? "1..":"0..") + (isMultiOccurs? "n":"1"); 		
-	}
-
-	private static void convertFieldsToChildStubs(Stub parentStub, Class<?> type, StubTypeTreeRepository typeTreeRepository) {
-		for (Field childField : type.getDeclaredFields()) {
-			Stub child = convertToStub(createVariableFromField(childField), typeTreeRepository);
-			parentStub.addChild(child);
+		List<Field> fields = getFieldsIncludingAncestorTypes(stub);
+		
+		for (Field childField : fields) {
+			@SuppressWarnings("unused")
+			Stub child = convertToStub(createVariableFromField(childField), parentStub, typeTreeRepository);
 		}
 
-		LinkedList<FieldsOfSubType> fieldsOfSubTypes = getFieldsOfSubTypes(type, typeTreeRepository);
+		LinkedList<FieldsOfSubType> fieldsOfSubTypes = getFieldsOfSubTypes(stub, typeTreeRepository);
 		for (FieldsOfSubType fieldsOfSubType : fieldsOfSubTypes) {
 			for (Field field : fieldsOfSubType.fields) {
-				Stub childStub = convertToStub(createVariableFromField(field), typeTreeRepository);
-				/*childStub.setOrder(parentStub.getOrder() + "." + 
-						(ArrayUtils.indexOf(type.getDeclaredFields(), field)+
-								1));*/
+				Stub childStub = convertToStub(createVariableFromField(field), parentStub, typeTreeRepository);			
 				childStub.setSubTypeOfParentStub(fieldsOfSubType.subType);
-				parentStub.addChild(childStub);
 			}
 		}
+
+	}
+
+	private static List<Field> getFieldsIncludingAncestorTypes(Class<?> type) {
+		List<Field> allFields = new ArrayList<Field>();
+		while (true) {
+			Field[] fieldsArray = type.getDeclaredFields();
+			List<Field> fields = new ArrayList<Field>();
+			if (fieldsArray != null) {
+				for (Field f : fieldsArray) {
+					fields.add(f);
+				}
+			}
+			allFields.addAll(0, fields);
+
+			type = type.getSuperclass();
+			if (type == null) {
+				break;
+			}
+			if (!type.isAnnotationPresent(XmlType.class)) {
+				break;
+			}
+
+		}
+		return allFields;
 	}
 
 	private static LinkedList<FieldsOfSubType> getFieldsOfSubTypes(Class<?> thisType, StubTypeTreeRepository typeTreeRepository) {

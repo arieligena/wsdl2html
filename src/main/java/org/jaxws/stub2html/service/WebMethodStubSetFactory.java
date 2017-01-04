@@ -29,7 +29,7 @@ public class WebMethodStubSetFactory {
 
 	private static void addResponseStub(Method method, WebMethodStubSet stubSet) {
 		JavaLanguageVariable variable = createVariableFromMethodReturn(method);		
-		Stub stub = Variable2Stub.convertToStub(variable, stubSet.getStubTypeTreeRepository());
+		Stub stub = Variable2Stub.convertToStub(variable, null, stubSet.getStubTypeTreeRepository());
 		stubSet.setResponseStub(stub);
 	}
 
@@ -38,7 +38,7 @@ public class WebMethodStubSetFactory {
 	//	int i = 1;
 		
 		for (JavaLanguageVariable variable : requestVariables) {		
-			Stub stub = Variable2Stub.convertToStub(variable, stubSet.getStubTypeTreeRepository());	
+			Stub stub = Variable2Stub.convertToStub(variable, null, stubSet.getStubTypeTreeRepository());	
 			stubSet.addRequestStub(stub);
 		}
 	}

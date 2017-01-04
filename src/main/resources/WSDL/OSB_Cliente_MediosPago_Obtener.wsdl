@@ -1,0 +1,56 @@
+<wsdl:definitions name="OSB_Cliente_MediosPago_Obtener" targetNamespace="http://mdwcorp.falabella.com/OSB/wsdl/FIF/CORP/cliente/mediosPago/obtener-v2.0" xmlns:tns="http://mdwcorp.falabella.com/OSB/wsdl/FIF/CORP/cliente/mediosPago/obtener-v2.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cs="http://mdwcorp.falabella.com/common/schema/clientservice" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:req="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Req-v2016.03" xmlns:resp="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Resp-v2016.03">
+	
+	<wsdl:types>
+		<xs:schema>
+			<xs:import schemaLocation="../../../UT_EsquemasComunes_V.2.0/Specifications/XSD/Common/MdwCorp_Common_clientService.xsd" namespace="http://mdwcorp.falabella.com/common/schema/clientservice"/>
+			<xs:import schemaLocation="../../../UT_EsquemasComunes_V.2.0/Specifications/XSD/Common/MdwCorp_Common_soapFault.xsd" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+			<xs:import schemaLocation="../Schemas/OSB_Cliente_MediosPago_ObtenerReq.xsd" namespace="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Req-v2016.03"/>
+			<xs:import schemaLocation="../Schemas/OSB_Cliente_MediosPago_ObtenerResp.xsd" namespace="http://mdwcorp.falabella.com/OSB/schema/FIF/CORP/cliente/mediosPago/obtener/Resp-v2016.03"/>
+		</xs:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="ClienteMediosPagoObtenerMsgReq">
+    	<wsdl:part name="ClienteMediosPagoObtenerReqParam" element="req:clienteMediosPagoObtenerExpReq"/>
+  	</wsdl:message>
+  	<wsdl:message name="ClienteMediosPagoObtenerMsgResp">
+    	<wsdl:part name="ClienteMediosPagoObtenerRespParam" element="resp:clienteMediosPagoObtenerExpResp"/>
+  	</wsdl:message>
+	
+	<wsdl:message name="FaultMsg">
+		<wsdl:part name="FaultParam" element="env:Fault"/>
+	</wsdl:message>
+	<wsdl:message name="ClientServiceMsg">
+		<wsdl:part name="ClientServiceParam" element="cs:ClientService"/>
+	</wsdl:message>
+	  
+    <wsdl:portType name="ClienteMediosPagoObtenerPt">
+    	<wsdl:operation name="ClienteMediosPagoObtenerOp">
+      	<wsdl:input message="tns:ClienteMediosPagoObtenerMsgReq"/>
+      	<wsdl:output message="tns:ClienteMediosPagoObtenerMsgResp"/>
+      	<wsdl:fault name="Fault" message="tns:FaultMsg"/>
+    	</wsdl:operation>
+  	</wsdl:portType>
+  
+  <wsdl:binding name="ClienteMediosPagoObtenerBinding" type="tns:ClienteMediosPagoObtenerPt">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ClienteMediosPagoObtenerOp">
+      <soap:operation soapAction="http://mdwcorp.falabella.com/OSB/wsdl/FIF/CORP/cliente/mediosPago/obtener-v2.0/Op"/>
+      	<wsdl:input>
+			<soap:header message="tns:ClientServiceMsg" part="ClientServiceParam" use="literal"/>
+			<soap:body use="literal"/>
+		</wsdl:input>
+		<wsdl:output>
+			<soap:body use="literal"/>
+		</wsdl:output>
+		<wsdl:fault name="Fault">
+			<soap:fault name="Fault" use="literal"/>
+		</wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="ClienteMediosPagoObtenerService">
+    <wsdl:port binding="tns:ClienteMediosPagoObtenerBinding" name="ClienteMediosPagoObtenerPort">
+      <soap:address location="http://localhost/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

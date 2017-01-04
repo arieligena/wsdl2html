@@ -48,41 +48,28 @@ In your pom.xml, add the following:
 		<dependency>
 			<groupId>com.github.asaidel</groupId>
 			<artifactId>wsdl2html</artifactId>
-			<version>2.3</version>
+			<version>3.0.2</version>
 		</dependency>
 		...
 	</dependencies>	
 
 ```
 
-
-
-```java
-
 //if you call this method in your code, make sure the jdk version you used to run your code is 
 // no lower than that of the jdk used  by your "wsimport" to run in shell
 
 String html = org.jaxws.wsdl2html.service.Wsdl2Html.generateHtml(wsdlUrl); 
-```  
 
+To generate html from stub classes, check [Wsdl2HtmlITCase](src/test/java/org/jaxws/integrationtest/Wsdl2HtmlITCase.java), [FalabellaTCase](src/test/java/org/jaxws/integrationtest/FalabellaTCase.java), 
+[FalabellaTCase2](src/test/java/org/jaxws/integrationtest/FalabellaTCase2.java) 
+fails but I don't know why yet
 
-To generate html from stub classes, check [Wsdl2HtmlITCase](src/test/java/org/jaxws/integrationtest/Wsdl2HtmlITCase.java)
-
-```java
-
-		WebServiceStubSet serviceStubSet = WebServiceStubSetFactory
-				.createWebServiceStubSet(webServiceClass);
-
-		WebServiceDisplayEngine displayEngine = org.jaxws.stub2html.view.freemarker.ClasspathFreemarkerWebServiceDisplayEngine.createEngine(
-				new SimpleJavaNameDisplayStrategy(),
-				/* you can use your own template here. this is a classpath */
-				"/service.ftl");
-				
-		String html = displayEngine.displayWebSerivce(serviceStubSet);
-
-```
 
 # History
+* 3.0.2
+	* Merged from chenjianjx 3.0.2
+	* JDK required 6+ again due merge
+
 * 2.3
 	* added order column in HTML output
 	* JDK required 6->7 due error in one case

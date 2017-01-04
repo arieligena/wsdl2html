@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.chenjianjx</groupId>
 	<artifactId>wsdl2html</artifactId>
-	<version>2.2</version>
+	<version>3.0.2</version>
 	<name>convert wsdl xml to readable html doc</name>
 
 	<properties>
-		<junit.version>4.9</junit.version>
-		<jdk.version>1.7</jdk.version>
+		<junit.version>4.12</junit.version>
+		<jdk.version>1.6</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>

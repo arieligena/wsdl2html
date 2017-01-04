@@ -1,8 +1,15 @@
 <#escape x as (x!)?html>
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-	<html>
+	<html lang="en">
 		<head>
-			<style type="text/css">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+				
+	
+		<!-- a bootstrap css is mandatory -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">	
+		
+		<style type="text/css">
 				body {background-color: rgb(246,246,246); }
 				h1 { color: rgb(0,51,102); font-family: helvetica; font-size: 15pt; font-weight: bold; }
 				h2 { color: rgb(0,51,102); font-family: helvetica; font-size: 13pt; font-weight: bold; }
@@ -21,13 +28,20 @@
 			</style>
 		
 			<title>
-				${className(service.webServiceClass.name)}
+				${className(service.webServiceClass)}
 			</title>
+		
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 		</head>	
 		<body>
-			<h1>${className(service.webServiceClass.name)}</h1>
-			
-			<table cellspacing="1" cellpadding="1" border="0">
+			<h1>${className(service.webServiceClass)}</h1>
+			<#if service.methodStubs??>	
+			<table cellspacing="1" cellpadding="1" border="1">
 				<tbody>
 						<tr valign="top">
 							<th align="left" class="color">Index</th>
@@ -49,82 +63,81 @@
 							<td class="no_color"/>
 							<td align="left" class="color">
 								<#list method.requestStubs as stub>
-									 ${elementName(stub.stubName)}<br/>
+									 ${stubName(stub)}<br/>
 								</#list>
 							
 							</td>
 							<td class="no_color"/>
 							<td align="left" class="color">
 								<#if method.responseStub??>
-									${elementName(method.responseStub.stubName)}
+									${stubType(method.responseStub)}
 								</#if>								 
 							</td>								
 						</tr>
 					</#list>
 				</tbody>
 			</table>
+			</#if>
 		    <#list service.methodStubs as method>		
 		    	<div class="methodBody"> 		    		
 		    		<hr/>		
 					<a name="method${method_index + 1}"><h2>Method #${method_index + 1} ${method.methodName}</h2></a>
 						<#if (method.requestStubs?size > 0)>
 							<h3>Request</h3>
-							<table cellspacing="1" cellpadding="1" border="0">
+							<table cellspacing="1" cellpadding="1" border="1">
 								<tbody>
+									<tr valign="top">
+										<th align="left" class="color">Name</th>
+									
+										<#if method.inheritanceInvolved>
+											<th align="left" class="color">Scope</th>												
+										</#if>
+										<th align="left" class="color">Order</th>
+										<th align="left" class="color">Cardinality</th>
+										<th align="left" class="color">Type</th>
+									
+										<th align="left" class="color">Required</th>
+										
+										<th align="left" class="color">Multiple</th>
+									</tr>									
+
+									<#macro stubRow stub order indence inheritanceInvolved>										
 										<tr valign="top">
-											<th align="left" class="color">Name</th>
-										
-											<#if method.inheritanceInvolved>
-												<th align="left" class="color">Scope</th>												
+											<td align="left" class="color">
+												<#list 0..indence as i>&nbsp;</#list>  
+												${stubName(stub)}
+											</td>
+											<#if inheritanceInvolved>		
+												<td align="left" class="color">
+													<#if stub.subTypeOfParentStub??>
+														Only for <b>${className(stub.subTypeOfParentStub.name)}</b>											
+													</#if>
+												</td>
 											</#if>
-											<th align="left" class="color">Order</th>
-											<th align="left" class="color">Cardinality</th>
-											<th align="left" class="color">Type</th>
-										
-											<th align="left" class="color">Required</th>
+											<td align="left" class="color">													
+												<#list 0..indence as i>&nbsp;</#list>
+												${order}													
+											</td>
+											<td align="left" class="color">${stub.cardinality}</td>
+											<td align="left" class="color">
+												<#noescape>
+													${stubType(stub)}
+												</#noescape>	
+											</td>
 											
-											<th align="left" class="color">Multiple</th>
-										</tr>									
-
-										<#macro stubRow stub order indence inheritanceInvolved>										
-											<tr valign="top">
-												<td align="left" class="color">
-													<#list 0..indence as i>&nbsp;</#list>  
-													${elementName(stub.stubName)}
-												</td>
-												<#if inheritanceInvolved>		
-													<td align="left" class="color">
-														<#if stub.subTypeOfParentStub??>
-															Only for <b>${className(stub.subTypeOfParentStub.name)}</b>											
-														</#if>
-													</td>
-												</#if>
-												<td align="left" class="color">													
-													${order}													
-												</td>
-												<td align="left" class="color">${stub.cardinality}</td>
-												<td align="left" class="color">
-													<#noescape>
-														<#assign stubTypeName>
-															${elementType(stub.type.name)}
-														</#assign>
-														${stubTypeName}
-													</#noescape>	
-												</td>
-												
-												<td align="left" class="color">${stub.required?string("Y","")}</td>
-												
-												<td align="left" class="color">${stub.multiOccurs?string("Y","")} </td>																								
-											</tr>								 
-											<#list stub.childStubs as childStub>								
-												<@stubRow stub=childStub order=order+"."+childStub?counter indence=indence+1 inheritanceInvolved=inheritanceInvolved/>
-											</#list>
+											<td align="left" class="color">${stub.required?string("Y","")}</td>
 											
-										</#macro>
-
-										<#list method.requestStubs as s>								 		
-											<@stubRow stub=s order="2" indence=1 inheritanceInvolved=method.inheritanceInvolved/>
+											<td align="left" class="color">${stub.multiOccurs?string("Y","")} </td>																								
+										</tr>								 
+										<#list stub.childStubs as childStub>								
+											<@stubRow stub=childStub order=order+"."+childStub?counter indence=indence+1 inheritanceInvolved=inheritanceInvolved/>
 										</#list>
+										
+									</#macro>
+
+									<#list method.requestStubs as s>								 		
+										<@stubRow stub=s order=1 indence=1 inheritanceInvolved=method.inheritanceInvolved/>
+									</#list>
 													
 								</tbody>
 							</table>
@@ -132,14 +145,13 @@
 			
 							<#if method.responseStub??>				
 								<h3>Response</h3>
-								<table cellspacing="1" cellpadding="1" border="0">
+								<table cellspacing="1" cellpadding="1" border="1">
 									<tbody>
 											<tr valign="top">
 												<th align="left" class="color">Name</th>
 												
 												<#if method.inheritanceInvolved>
 													<th align="left" class="color">Scope</th>
-													<th class="no_color"/>
 												</#if>
 												<th align="left" class="color">Order</th>
 												<th align="left" class="color">Cardinality</th>
@@ -149,7 +161,7 @@
 											
 												<th align="left" class="color">Multiple</th>
 											</tr>
-											<@stubRow stub=method.responseStub order="1" indence=1 inheritanceInvolved=method.inheritanceInvolved/>							
+											<@stubRow stub=method.responseStub order=1 indence=1 inheritanceInvolved=method.inheritanceInvolved/>							
 									</tbody>
 								</table>					
 							</#if>
@@ -164,7 +176,7 @@
 											<tr valign="top">
 												<td align="left" class="color">
 													<#list 0..indence as i>
-													  	&nbsp;&nbsp;&nbsp;&nbsp;
+													  	&nbsp;&nbsp;
 													</#list>  
 													${className(typeTree.type.name)}
 												</td>																								
@@ -175,7 +187,7 @@
 			
 								</#macro>  									
 								
-								<table cellspacing="1" cellpadding="1" border="0">
+								<table cellspacing="1" cellpadding="1" border="1">
 									<tbody>									
 											<#list method.stubTypeTreeRepository.allTrees as typeTree>
 												<#if !typeTree.parent??>
@@ -194,5 +206,3 @@
 		</body>
 	</html>  
 </#escape>
-
-

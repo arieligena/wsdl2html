@@ -3,8 +3,6 @@ package org.jaxws.stub2html.view.freemarker;
 import java.io.File;
 import java.io.IOException;
 
-import org.jaxws.stub2html.view.JavaNameDisplayStrategy;
-
 import freemarker.template.Template;
 
 /**
@@ -16,8 +14,8 @@ public class FilePathFreemarkerWebServiceDisplayEngine extends FreemarkerWebServ
 
     private File templateFile;
 
-    private FilePathFreemarkerWebServiceDisplayEngine(JavaNameDisplayStrategy nameDisplayingStrategy, File templateFile) {
-        super(nameDisplayingStrategy);
+    private FilePathFreemarkerWebServiceDisplayEngine(File templateFile) {
+        super();
         if (!templateFile.exists() || !templateFile.isFile()) {
             throw new IllegalArgumentException(templateFile + " doesn't exist or is not a file");
         }
@@ -33,8 +31,8 @@ public class FilePathFreemarkerWebServiceDisplayEngine extends FreemarkerWebServ
         }
     }
 
-    public static FilePathFreemarkerWebServiceDisplayEngine createEngine(JavaNameDisplayStrategy nameDisplayingStrategy, File templateFile) {
-        return new FilePathFreemarkerWebServiceDisplayEngine(nameDisplayingStrategy, templateFile);
+    public static FilePathFreemarkerWebServiceDisplayEngine createEngine(File templateFile) {
+        return new FilePathFreemarkerWebServiceDisplayEngine(templateFile);
 
     }
 

@@ -11,21 +11,9 @@ import org.jaxws.stub2html.model.WebServiceStubSet;
  */
 public abstract class WebServiceDisplayEngine {
 
-    protected JavaNameDisplayStrategy nameDisplayingStrategy;
+	public abstract String displayWebService(WebServiceStubSet serviceStubSet);
 
-    public abstract String displayWebService(WebServiceStubSet serviceStubSet);
-
-    public WebServiceDisplayEngine(JavaNameDisplayStrategy nameDisplayingStrategy) {
-        super();
-        this.nameDisplayingStrategy = nameDisplayingStrategy;
-    }
-  
-    public JavaNameDisplayStrategy getNameDisplayingStrategy() {
-        return nameDisplayingStrategy;
-    }
-
-    public void setNameDisplayingStrategy(JavaNameDisplayStrategy nameDisplayingStyle) {
-        this.nameDisplayingStrategy = nameDisplayingStyle;
-    }
-
+	public WebServiceDisplayEngine() {
+		super();
+	}
 }
